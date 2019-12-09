@@ -77,13 +77,15 @@ int main(){
                 for(i=0; i<qtdAcoes; i++){
                     fscanf(arquivo, "%d", &(acoes[i].preco));
                 }
-   /*
+   
                     for( i=0; i<qtdAcoes; i++){
                     printAcao((acoes+i), i);
-                    printf("\n");*/
+                    printf("\n");
+                    }
                 
               
         }
+
 
             // Cadastra o novo jogador
             inv = (Investidor*) novoInvestidor(dinheiro);
@@ -102,16 +104,14 @@ int main(){
             // Enquanto ele tiver dinheiro ou não optar por sair, o jogador pode comprar mais ações
             while (inv->dinheiro > 0 ) {
                 //printar acoes sempre que o user for invesir
-                   
-                    for( i=0; i<qtdAcoes; i++){
-                    printAcao((acoes+i), i);
-                    printf("\n");}
-                         
-                 
-
                 int choice = 0;
                 choice = compra(acoes, inv, &cont, qtdAcoes);
                 if (choice == -1) break;
+                   for( i=0; i<qtdAcoes; i++){
+                    printAcao((acoes+i), i);
+                    printf("\n");
+                    }
+
             }
 
             printf("\n\nResumo dos Investimentos de %s\n", inv->name);
@@ -156,4 +156,5 @@ int main(){
 system("pause");
 
 }
+
 

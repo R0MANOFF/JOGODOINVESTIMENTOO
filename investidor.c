@@ -51,7 +51,7 @@ int compra(Acao* acoes, Investidor* inv, int* ct, int qntdAcoes){
     scanf("%d", &choice);
     if (choice == -1) return -1;
 
-    if (choice > qntdAcoes){
+  
     printf("Digite a porcentagem da acao (1 a 100%%):\n");
     scanf(" %lf", &porcentagem);
 
@@ -109,7 +109,7 @@ int compra(Acao* acoes, Investidor* inv, int* ct, int qntdAcoes){
         printf("Custo:%lf Lucro %lf\n",inv->investimentos[i].d_investido,inv->investimentos[i].lucro);
         }
     
-    }
+    
 
 return 0;
 }
