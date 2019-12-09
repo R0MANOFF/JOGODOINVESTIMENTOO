@@ -8,7 +8,7 @@ Investidor *novoInvestidor(int dinheiro){
     Investidor *inv;
     inv = (Investidor*)malloc(sizeof(Investidor));
     if(inv!=NULL){
-        printf("Informe o nome do investidor: ");
+        printf("\nInforme o nome do investidor: ");
         fgets(inv->name, sizeof(inv->name), stdin);
         inv->name[strlen(inv->name)-1] = '\0';
         inv->dinheiro = dinheiro;
@@ -42,7 +42,7 @@ void printAcao(Acao *ac, int i){
 
 // Uma sugestão de modelo de função de compra
 // Recebe o vetor de ações
-int compra(Acao* acoes, Investidor* inv, int* ct){
+int compra(Acao* acoes, Investidor* inv, int* ct, int qntdAcoes){
     int choice = 0, i = 0, cont;
     double lucro_da_rodada=0, lucroAtual=0, custo_da_rodada=0, porcentagem =0, dinheiro = inv->dinheiro;
 
@@ -50,6 +50,8 @@ int compra(Acao* acoes, Investidor* inv, int* ct){
     printf("\nDigite o numero da acao ou -1 para sair:\n");
     scanf("%d", &choice);
     if (choice == -1) return -1;
+
+    if (choice > qntdAcoes){
     printf("Digite a porcentagem da acao (1 a 100%%):\n");
     scanf(" %lf", &porcentagem);
 
@@ -97,7 +99,8 @@ int compra(Acao* acoes, Investidor* inv, int* ct){
             printf("\nInvestimento cancelado\n");
             break;
 
-    }
+        }
+    
     
    
 
@@ -106,6 +109,7 @@ int compra(Acao* acoes, Investidor* inv, int* ct){
         printf("Custo:%lf Lucro %lf\n",inv->investimentos[i].d_investido,inv->investimentos[i].lucro);
         }
     
+    }
 
 return 0;
 }

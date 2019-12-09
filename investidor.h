@@ -32,6 +32,6 @@ Investidor *novoInvestidor(int dinheiro);
 int destroyInvestidor(Investidor *inv);
 
 void printAcao(Acao *ac, int i);
-int compra(Acao*, Investidor*, int*);
+int compra(Acao*, Investidor*, int*,  int qntdAcoes);
 
 #endif // INVESTIDOR_H_INCLUDED
