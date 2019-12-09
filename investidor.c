@@ -115,3 +115,16 @@ return 0;
 }
 
 
+void ranking(double pontuacao, char* nome){
+
+    FILE* record;
+
+    record = fopen("records.txt", "w");
+
+    //escrevendo a pontuação e o nome no arquivo
+
+    fprintf(record,"%lf ", pontuacao);
+    fprintf(record,"%s", nome);
+
+    fclose(record);
+    }

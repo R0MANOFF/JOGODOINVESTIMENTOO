@@ -39,6 +39,9 @@ int main(){
     char test[100];
     // Criei um contador que será usado na função de compra, e para imprimir as aquisições na tela
     int aux, cont = 0;
+    char nome[50]; //= (char) inv->name;
+    double l; // =(double) inv->totalLucro;
+
 
     switch (nMenu)
     {
@@ -124,14 +127,21 @@ int main(){
             printf("Vezes investidas:%d\n", inv->qtdInvestimentos);
 
             printf("Custo:%.2lf Lucro %.2lf\n",inv->investimentos[0].d_investido,inv->investimentos[0].lucro);
-    
+
+            
+            
+            strcpy(nome,inv->name);
+            ranking(l,nome);
+           
+
+            //ranking(inv->n);
         break;
 
     case 2:
         printf("codigo da ia");
         break;
     case 3:
-        printf("codigo records");
+       printf("___");
     break;
     case 4:
         break;
@@ -156,5 +166,4 @@ int main(){
 system("pause");
 
 }
-
 

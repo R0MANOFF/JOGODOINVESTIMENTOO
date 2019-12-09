@@ -33,5 +33,6 @@ int destroyInvestidor(Investidor *inv);
 
 void printAcao(Acao *ac, int i);
 int compra(Acao*, Investidor*, int*,  int qntdAcoes);
+void ranking(double pontuacao, char* nome);
 
 #endif // INVESTIDOR_H_INCLUDED
