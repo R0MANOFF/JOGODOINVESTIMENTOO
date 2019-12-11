@@ -40,8 +40,10 @@ int main(){
     // Criei um contador que será usado na função de compra, e para imprimir as aquisições na tela
     int aux, cont = 0;
     
-    char nome[50]; //= (char) inv->name;
-    double l; // =(double) inv->totalLucro;
+    char nome[50];
+    double l; 
+
+    double menorValor = acoes[0].preco;
 
 
     switch (nMenu)
@@ -102,24 +104,31 @@ int main(){
             // Atualiza o dinehiro na struct do investidor
             inv->dinheiro = dinheiro;
 
-            
+            for(i=0;i<qtdAcoes;i++){
+                if(menorValor > acoes[i].preco){
+                menorValor = acoes[i].preco * 0.1;
+                }
+            }
 
 
 
 
             // Enquanto ele tiver dinheiro ou não optar por sair, o jogador pode comprar mais ações
-            while (inv->dinheiro > 0 ) {
+            while (inv->dinheiro > menorValor ) {
                 //printar acoes sempre que o user for invesir
                 int choice = 0;
-                choice = compra(acoes, inv, &cont, qtdAcoes);
+                choice = compra(acoes, inv, &cont, menorValor);
                 if (choice == -1) break;
 
-                for( i=0; i<qtdAcoes; i++){
-                    printAcao((acoes+i), i);
-                    printf("\n");
-                }
+               
+                    for( i=0; i<qtdAcoes; i++){
+                        printAcao((acoes+i), i);
+                        printf("\n");
+                    }
+                
 
             }
+            
             
             printf("\n\nResumo dos Investimentos de %s\n", inv->name);
 
@@ -131,7 +140,7 @@ int main(){
             printf("Lucro Final:%.2lf\n", inv->totalLucro);
             printf("Vezes investidas:%d\n", inv->qtdInvestimentos);
 
-            printf("\nCusto:%.2lf Lucro %.2lf\n",inv->investimentos[0].d_investido,inv->investimentos[0].lucro);
+           
         }
         break;
 

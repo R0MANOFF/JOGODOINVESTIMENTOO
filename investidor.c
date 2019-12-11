@@ -40,10 +40,11 @@ void printAcao(Acao *ac, int i){
 }
 
 // Recebe o vetor de ações
-int compra(Acao* acoes, Investidor* inv, int* ct, int qntdAcoes){
+int compra(Acao* acoes, Investidor* inv, int* ct, double menorValor){
 
     int choice = 0, i = 0, cont;
     double lucro_da_rodada=0, lucroAtual=0, custo_da_rodada=0, porcentagem =0, dinheiro = inv->dinheiro;
+    double p = (porcentagem/100)*dinheiro;
 
     setbuf(stdin, NULL);
     printf("\nDigite o numero da acao ou -1 para sair:\n");
@@ -51,8 +52,13 @@ int compra(Acao* acoes, Investidor* inv, int* ct, int qntdAcoes){
     if (choice == -1) return -1;
 
   
-    printf("Digite a porcentagem da acao (1 a 100%%):\n");
+    printf("Digite a porcentagem da acao (10 a 100%%):\n");
     scanf(" %lf", &porcentagem);
+
+    if(porcentagem > 10 && porcentagem < 100){
+    
+//se a porcentagem que eu for pagar for maior que  o dinheiro q eu investir entao eu printo saldo insuficiente
+    if( p < inv->dinheiro ){ 
 
     //printar processo para informar usuario da escolha que ele fara para ver se ele tem certeza
     printf("\n----------------------------------\n");
@@ -93,26 +99,47 @@ int compra(Acao* acoes, Investidor* inv, int* ct, int qntdAcoes){
             printf("\nCarteira de Acoes:\n");
             printf("\n--------------------------\n");
 
+              //Para exibir o valor de cada compra eh preciso converter os tipos nas structs que estão incompatíveis
+                    for (i = 0; i < cont; i ++){
+                        printf("\n Custo:%lf Lucro %lf\n",inv->investimentos[i].d_investido,inv->investimentos[i].lucro);
+                    }
+    
+            return 0;
+    
+
             break;
-        
+
+            case 0:
+            printf("\nInvestimento cancelado, mas nao desiste ainda\n");
+            return 0;
+            break;
+                
         default:
             printf("\nInvestimento cancelado\n");
+            return 0;
             break;
-
         }
     
-    
-   
+    }
 
-    //Para exibir o valor de cada compra eh preciso converter os tipos nas structs que estão incompatíveis
-    for (i = 0; i < cont; i ++){
-        printf("\n Custo:%lf Lucro %lf\n",inv->investimentos[i].d_investido,inv->investimentos[i].lucro);
-        }
-    
+    else
+    {
+        printf("\n----------------------------\n");
+        printf("\nSaldo insuficiente para essa acao\n");
+        printf("\n----------------------------\n");
+        return 0;
+    }
+    }
+    else{
+        printf("\n----------------------------\n");
+        printf("\nPorcentagem invalida, tente novamente...\n");
+        printf("\n----------------------------\n");
+    }
+    }
+
     
 
-return 0;
-}
+
 
 
 void ranking(double pontuacao, char* nome){
