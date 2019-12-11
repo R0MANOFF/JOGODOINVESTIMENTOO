@@ -40,6 +40,10 @@ int main(){
     // Criei um contador que será usado na função de compra, e para imprimir as aquisições na tela
     int aux, cont = 0;
     
+    char nome[50]; //= (char) inv->name;
+    double l; // =(double) inv->totalLucro;
+
+
     switch (nMenu)
     {
     case (1):
@@ -135,7 +139,7 @@ int main(){
         printf("codigo da ia");
         break;
     case 3:
-        printf("codigo records");
+       printf("___");
     break;
     case 4:
         break;
@@ -161,5 +165,4 @@ int main(){
 system("pause");
 
 }
-
 
