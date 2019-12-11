@@ -19,8 +19,8 @@ int main(){
         printf("\n-------------MENU---------------\n");
         printf("\n[1] - JOGAR\n");
         printf("\n[2] - I.A.\n");
-        printf("\n[1] - RECORDS\n");
-        printf("\n[1] - SAIR\n");
+        printf("\n[3] - RECORDS\n");
+        printf("\n[4] - SAIR\n");
         printf("\n-------------------------------\n");
 
         int nMenu;
@@ -39,7 +39,7 @@ int main(){
     char test[100];
     // Criei um contador que será usado na função de compra, e para imprimir as aquisições na tela
     int aux, cont = 0;
-
+    
     switch (nMenu)
     {
     case (1):
@@ -51,6 +51,7 @@ int main(){
         printf("\n[4] - 24 acoes\n");
         printf("\n[5] - 100 acoes\n\n");
         scanf("%d", &level);
+
         switch (level){
             case 1: arquivo = fopen("investimento/invest1.txt", "r"); break;
             case 2: arquivo = fopen("investimento/invest2.txt", "r"); break;
@@ -61,7 +62,7 @@ int main(){
         }
         // Eu limpo o ENTER que fica depois que a pessoa digita o nivel
         setbuf(stdin, NULL);
-
+     if(level >= 1 && level<=5){
         //fazer um if para verificar se o arquivo foi aberto
         if(arquivo != NULL){
  
@@ -70,7 +71,6 @@ int main(){
                 dinheiro = aux/1.0;
                 acoes = (Acao*)malloc(sizeof(Acao)*qtdAcoes);
 
-                // Tirei o ponteiro "ac" porque não precisa dele
                 for(i=0; i<qtdAcoes; i++){
                     fscanf(arquivo, "%d", &acoes[i].lucro);
                 }
@@ -98,6 +98,8 @@ int main(){
             // Atualiza o dinehiro na struct do investidor
             inv->dinheiro = dinheiro;
 
+            
+
 
 
 
@@ -107,24 +109,26 @@ int main(){
                 int choice = 0;
                 choice = compra(acoes, inv, &cont, qtdAcoes);
                 if (choice == -1) break;
-                   for( i=0; i<qtdAcoes; i++){
+
+                for( i=0; i<qtdAcoes; i++){
                     printAcao((acoes+i), i);
                     printf("\n");
-                    }
+                }
 
             }
-
+            
             printf("\n\nResumo dos Investimentos de %s\n", inv->name);
 
+
             for (i = 0; i <cont; i++){
-                printf("Custo:%.2lf Lucro %.2lf\n",inv->investimentos[i].d_investido,inv->investimentos[i].lucro);
+                printf("\nCusto:%.2lf Lucro %.2lf\n",inv->investimentos[i].d_investido,inv->investimentos[i].lucro);
             }                               
             printf("\nDinheiro Final:%.2lf\n", inv->dinheiro);
             printf("Lucro Final:%.2lf\n", inv->totalLucro);
             printf("Vezes investidas:%d\n", inv->qtdInvestimentos);
 
-            printf("Custo:%.2lf Lucro %.2lf\n",inv->investimentos[0].d_investido,inv->investimentos[0].lucro);
-    
+            printf("\nCusto:%.2lf Lucro %.2lf\n",inv->investimentos[0].d_investido,inv->investimentos[0].lucro);
+        }
         break;
 
     case 2:
@@ -136,6 +140,7 @@ int main(){
     case 4:
         break;
     default:
+        printf("\nOpcao inexistente\n");
         break;
     }
    

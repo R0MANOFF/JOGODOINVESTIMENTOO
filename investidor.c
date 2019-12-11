@@ -39,10 +39,9 @@ void printAcao(Acao *ac, int i){
     }
 }
 
-
-// Uma sugestão de modelo de função de compra
 // Recebe o vetor de ações
 int compra(Acao* acoes, Investidor* inv, int* ct, int qntdAcoes){
+
     int choice = 0, i = 0, cont;
     double lucro_da_rodada=0, lucroAtual=0, custo_da_rodada=0, porcentagem =0, dinheiro = inv->dinheiro;
 
@@ -90,8 +89,9 @@ int compra(Acao* acoes, Investidor* inv, int* ct, int qntdAcoes){
             printf("\nDinheiro Atual:%lf\n", inv->dinheiro);
             printf("Lucro Atual:%lf\n", inv->totalLucro);
             printf("Vezes investidas:%d\n", inv->qtdInvestimentos);
+            printf("\n--------------------------\n");
             printf("\nCarteira de Acoes:\n");
-            printf("--------------------------\n");
+            printf("\n--------------------------\n");
 
             break;
         
@@ -106,7 +106,7 @@ int compra(Acao* acoes, Investidor* inv, int* ct, int qntdAcoes){
 
     //Para exibir o valor de cada compra eh preciso converter os tipos nas structs que estão incompatíveis
     for (i = 0; i < cont; i ++){
-        printf("Custo:%lf Lucro %lf\n",inv->investimentos[i].d_investido,inv->investimentos[i].lucro);
+        printf("\n Custo:%lf Lucro %lf\n",inv->investimentos[i].d_investido,inv->investimentos[i].lucro);
         }
     
     
