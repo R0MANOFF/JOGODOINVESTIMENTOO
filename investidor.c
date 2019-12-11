@@ -44,8 +44,7 @@ int compra(Acao* acoes, Investidor* inv, int* ct, double menorValor){
 
     int choice = 0, i = 0, cont;
     double lucro_da_rodada=0, lucroAtual=0, custo_da_rodada=0, porcentagem =0, dinheiro = inv->dinheiro;
-    double p = (porcentagem/100)*dinheiro;
-
+    double p;
     setbuf(stdin, NULL);
     printf("\nDigite o numero da acao ou -1 para sair:\n");
     scanf("%d", &choice);
@@ -55,10 +54,10 @@ int compra(Acao* acoes, Investidor* inv, int* ct, double menorValor){
     printf("Digite a porcentagem da acao (10 a 100%%):\n");
     scanf(" %lf", &porcentagem);
 
-    if(porcentagem > 10 && porcentagem < 100){
+    if(porcentagem >= 10 && porcentagem <= 100){
     
 //se a porcentagem que eu for pagar for maior que  o dinheiro q eu investir entao eu printo saldo insuficiente
-    if( p < inv->dinheiro ){ 
+    
 
     //printar processo para informar usuario da escolha que ele fara para ver se ele tem certeza
     printf("\n----------------------------------\n");
@@ -72,8 +71,11 @@ int compra(Acao* acoes, Investidor* inv, int* ct, double menorValor){
     printf("\nQuer continuar o investimento?(0 - nao/ 1 - sim)\n");
     scanf("%d", &querContinuar);
 
+    p = (porcentagem/100)* acoes[choice].preco;
+
     switch(querContinuar){
         case(1):
+                if(p < dinheiro){
             // Incremento o valor que estah no cont da função main
             cont = ++*ct;
             //Lucro e custo da compra
@@ -118,40 +120,20 @@ int compra(Acao* acoes, Investidor* inv, int* ct, double menorValor){
             printf("\nInvestimento cancelado\n");
             return 0;
             break;
+            
+            }
+            printf("\nSaldo insuficiente\n");
         }
+        
     
     }
-
-    else
-    {
-        printf("\n----------------------------\n");
-        printf("\nSaldo insuficiente para essa acao\n");
-        printf("\n----------------------------\n");
-        return 0;
-    }
-    }
+    
     else{
         printf("\n----------------------------\n");
         printf("\nPorcentagem invalida, tente novamente...\n");
         printf("\n----------------------------\n");
     }
-    }
+}
+
 
     
-
-
-
-
-void ranking(double pontuacao, char* nome){
-
-    FILE* record;
-
-    record = fopen("records.txt", "w");
-
-    //escrevendo a pontuação e o nome no arquivo
-
-    fprintf(record,"%lf ", pontuacao);
-    fprintf(record,"%s", nome);
-
-    fclose(record);
-    }

@@ -30,15 +30,18 @@ int main(){
     //"final" do menu
 
     Investidor *inv;
-    Acao *acoes;
+    Acao* acoes;
+    Investidor* auxi;
     // Declarei o contador "i" porque no meu pc não roda declarando dentro do for
     // Declarei uma variável chamada level para seleção do cenário
     int qtdAcoes, i, level;
-    FILE  *arquivo;
+    FILE* arquivo;
     double dinheiro;
     char test[100];
     // Criei um contador que será usado na função de compra, e para imprimir as aquisições na tela
     int aux, cont = 0;
+    Records* rank;
+    FILE* record;
     
     char nome[50];
     double l; 
@@ -135,28 +138,73 @@ int main(){
 
             for (i = 0; i <cont; i++){
                 printf("\nCusto:%.2lf Lucro %.2lf\n",inv->investimentos[i].d_investido,inv->investimentos[i].lucro);
-            }                               
+            }     
+
             printf("\nDinheiro Final:%.2lf\n", inv->dinheiro);
             printf("Lucro Final:%.2lf\n", inv->totalLucro);
             printf("Vezes investidas:%d\n", inv->qtdInvestimentos);
+
 
            
         }
         break;
 
-    case 2:
-        printf("codigo da ia");
+    case 2: 
+        
+        printf("Informe o nivel para ia\n");
+        printf("\n[1] - 8 acoes\n");
+        printf("\n[2] - 10 acoes\n");
+        printf("\n[3] - 15 acoes\n");
+        printf("\n[4] - 24 acoes\n");
+        printf("\n[5] - 100 acoes\n\n");
+        scanf("%d", &level);
+
+        switch (level){
+            case 1: arquivo = fopen("investimento/invest1.txt", "r"); break;
+            case 2: arquivo = fopen("investimento/invest2.txt", "r"); break;
+            case 3: arquivo = fopen("investimento/invest3.txt", "r"); break;
+            case 4: arquivo = fopen("investimento/invest4.txt", "r"); break;
+            case 5: arquivo = fopen("investimento/invest5.txt", "r"); break;
+            default: printf("\nFase inexistente\n"); break;
+        }
+        setbuf(stdin, NULL);
+        if(level >= 1 && level<=5){
+            //fazer um if para verificar se o arquivo foi aberto
+        if(arquivo != NULL){
+ 
+                fscanf(arquivo, "%d", &qtdAcoes);
+                fscanf(arquivo, "%d", &aux);
+                dinheiro = aux/1.0;
+                acoes = (Acao*)malloc(sizeof(Acao)*qtdAcoes);
+
+                for(i=0; i<qtdAcoes; i++){
+                    fscanf(arquivo, "%d", &acoes[i].lucro);
+                }
+                for(i=0; i<qtdAcoes; i++){
+                    fscanf(arquivo, "%d", &(acoes[i].preco));
+                }
+   
+                    for( i=0; i<qtdAcoes; i++){
+                    printAcao((acoes+i), i);
+                    printf("\n");
+                    }
+
+            //funcao para escrever records
+                //rank = (Records*)malloc(sizeof(Records)*qtdAcoes);
+              
+        }
         break;
+
     case 3:
-       printf("___");
-    break;
-    case 4:
+        
+
         break;
     default:
         printf("\nOpcao inexistente\n");
         break;
     }
-   
+    }
+
 
  
 
