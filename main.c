@@ -42,9 +42,7 @@ int main(){
     int aux, cont = 0;
     Records* rank;
     FILE* record;
-    
-    char nome[50];
-    double l; 
+    char *nome; // para usar em records
 
     double menorValor = acoes[0].preco;
 
@@ -144,6 +142,8 @@ int main(){
             printf("Lucro Final:%.2lf\n", inv->totalLucro);
             printf("Vezes investidas:%d\n", inv->qtdInvestimentos);
 
+             escreverRecorde( Records* jogador,char *nome, inv->totalLucro , level)
+
 
            
         }
@@ -184,15 +184,14 @@ int main(){
                     fscanf(arquivo, "%d", &(acoes[i].preco));
                 }
    
-                    for( i=0; i<qtdAcoes; i++){
-                    printAcao((acoes+i), i);
-                    printf("\n");
-                    }
-
-            //funcao para escrever records
-                //rank = (Records*)malloc(sizeof(Records)*qtdAcoes);
+                for( i=0; i<qtdAcoes; i++){
+                printAcao((acoes+i), i);
+                printf("\n");
+                }
               
         }
+
+
         break;
 
     case 3:

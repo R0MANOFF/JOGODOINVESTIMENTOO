@@ -136,4 +136,23 @@ int compra(Acao* acoes, Investidor* inv, int* ct, double menorValor){
 }
 
 
-    
+    int escreverRecorde( Records* jogador,char *nome, int valor,int fase){
+            FILE *recorde=NULL;
+
+            recorde = fopen("recorde.txt","w");
+
+            if(recorde==NULL){
+                printf ("Erro de abertura");
+                return 0;
+            }
+            for(int i=0;i<5;i++){
+                if(fase==i+1){
+                fprintf(recorde,"%s%d\n",nome,valor);
+                }else{
+                fprintf(recorde,"%s\n%d\n",jogador[i].nome,jogador[i].recorde);
+                }
+            }
+
+            fclose(recorde);
+            return 1;
+    }

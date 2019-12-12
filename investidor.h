@@ -30,8 +30,9 @@ typedef struct _investidor_
 
 typedef struct _records_
 {
-    char nome[300];
-    double recordsLucro;
+  char *nome;
+  int recorde;
+
 } Records;
 
 Investidor *novoInvestidor(int dinheiro);
@@ -39,6 +40,8 @@ int destroyInvestidor(Investidor *inv);
 
 void printAcao(Acao *ac, int i);
 int compra(Acao*, Investidor*, int*, double menorValor);
+
+int escreverRecorde( Records* jogador,char *nome, int valor,int fase);
 
 #endif // INVESTIDOR_H_INCLUDED
 
